@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,8 +8,30 @@
     <title>meme-generator</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
-<body>
+
+<body onload="init()">
     <h1>Meme Generator</h1>
+    <div class="canvas-container">
+        <!-- <canvas id="my-canvas" width="500" height="500" onclick="draw(event)"> -->
+        <canvas id="my-canvas" width="500" height="500">
+            Update your browser to enjoy canvas!
+        </canvas>
+    </div>
+    <!-- <label for="text"></label> -->
+    <!-- <form novalidate> -->
+    <input type="text" id="memeTxt" name="memeTxt" placeholder="Write your text here" required />
+    <button onclick="onAddTxt()">Add</button>
+    <!-- </form> -->
+    <script src="js/meme-servise.js"></script>
+
+    <div class="gallery-container">
+        <!-- to render it later  -->
+        <img data-id=1 class="thumbnail-img" src="img/1.jpg" onclick=updateImgMm(this)>
+        <img data-id=2 class="thumbnail-img" src="img/2.jpg" onclick=updateImgMm(this)>
+
+    </div>
+
     <script src="js/main.js"></script>
 </body>
+
 </html>

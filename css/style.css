@@ -1,3 +1,21 @@
 h1{
-    color:aqua;
+    color:rgb(21, 192, 192);
+}
+
+#my-canvas{
+    border: 2px solid black;
+}
+/* 
+.text-on-canv{
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+} */
+
+.thumbnail-img{
+    height: 160px;
+    width: 160px;
+    object-fit: cover;
+}
+
+.gallery-container{
+    margin-top: 25px;
 }
