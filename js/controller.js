@@ -2,6 +2,7 @@
 
 let gCanvas;
 let gCtx;
+let gRowNum = 0;
 // var gCurrShape = 'text'
 
 function init() {
@@ -65,24 +66,26 @@ function updateImgMm(elImg) {
 function increaseFont() {
     console.log('clicked on increase');
     console.log(gMeme.lines[0].size);
-    gMeme.lines[0].size++;
+    gMeme.lines[0].size += 2;
     renderCanvas();
 }
 
 function decreaseFont() {
     console.log('clicked on increase');
     console.log(gMeme.lines[0].size);
-    gMeme.lines[0].size--;
+    gMeme.lines[0].size -= 2;
     renderCanvas();
 }
 
 function rowDown() {
-    gPos.y += gPos.rowJump;
+    var getPos = (gRowNum===0)? gPos0 : gPos1;
+    getPos.y += getPos.rowJump;    
     renderCanvas();
 }
 
 function rowUp() {
-    gPos.y -= gPos.rowJump;
+    var getPos = (gRowNum===0)? gPos0 : gPos1;
+    getPos.y -= getPos.rowJump;
     renderCanvas();
 }
 
