@@ -10,7 +10,6 @@
 </head>
 
 <body onload="init()">
-    <h1>Meme Generator</h1>
     <div class="canvas-container">
         <!-- <canvas id="my-canvas" width="500" height="500" onclick="draw(event)"> -->
         <canvas id="my-canvas" width="500" height="500">
@@ -19,19 +18,27 @@
     </div>
     <!-- <label for="text"></label> -->
     <!-- <form novalidate> -->
-    <input type="text" id="memeTxt" name="memeTxt" placeholder="Write your text here" required />
-    <button onclick="onAddTxt()">Add</button>
-    <!-- </form> -->
-    <script src="js/meme-servise.js"></script>
-
+    <div class="meme-editor">
+        <input type="text" id="firstTxt" name="firstTxt" placeholder="Write your text here" required />
+        <button onclick="onUpdateTxt(0)">Update</button>
+        <input type="text" id="secondTxt" name="secondTxt" placeholder="Write your text here" required />
+        <button onclick="onUpdateTxt(1)">Update</button>
+        <img class="btn-icon" src="icons/increase font - icon.png" onclick="increaseFont()" />
+        <img class="btn-icon" src="icons/decrease font - icon.png" onclick="decreaseFont()" />
+        <!-- <img class="btn-icon" src="icons/" onclick="decreaseFont()" /> -->
+        <button onclick="rowUp()">Up</button>
+        <button onclick="rowDown()">Down</button>
+        <img class="btn-icon" src="icons/up-and-down-opposite-double-arrows-side-by-side.png" onclick="switchLines()" />
+    </div>
+    <header class="nav-bar">I'm a NavBar</header>
     <div class="gallery-container">
         <!-- to render it later  -->
-        <img data-id=1 class="thumbnail-img" src="img/1.jpg" onclick=updateImgMm(this)>
-        <img data-id=2 class="thumbnail-img" src="img/2.jpg" onclick=updateImgMm(this)>
-
+        <img data-id=1 class="thumbnail-img" src="img/1.jpg" onclick="updateImgMm(this)">
+        <img data-id=2 class="thumbnail-img" src="img/2.jpg" onclick="updateImgMm(this)">
     </div>
-
-    <script src="js/main.js"></script>
+    <footer>I'm a footer</footer>
+    <script src="js/meme-servise.js"></script>
+    <script src="js/controller.js"></script>
 </body>
 
 </html>
