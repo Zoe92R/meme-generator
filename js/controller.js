@@ -105,9 +105,9 @@ function onLeftTxt() {
 function onRightTxt() {
     console.log('to right');
     // gCanvas.setAttribute('dir','rtl');
-    gCtx.direction = 'rtl'
-    // gPos0.x = gCanvas.width;
-    gPos0.x = 0;
+    // gCtx.direction = 'rtl'
+    gPos0.x = gCanvas.width/2;
+    // gPos0.x = 0;
     gMeme.lines[gRowNum].align = 'left';
      ///to fix this
     renderCanvas();

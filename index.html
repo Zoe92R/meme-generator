@@ -16,29 +16,30 @@
             Update your browser to enjoy canvas!
         </canvas>
     </div>
-    <div class="meme-editor">
-        <input type="text" id="txt" name="txt" oninput="onUpdateTxt()" placeholder="Write your text here">
-        <select name="fonts" id="fonts" onchange="onFontFamily(this.value)">
+    <div class="meme-editor meme-grid">
+        <input class="text-i" type="text" id="txt" name="txt" oninput="onUpdateTxt()" placeholder="Write your text here">
+        <img class="btn-icon up-i" src="icons/arrow-up.png" onclick="onRowUp()" />
+        <img class="btn-icon down-i" src="icons/arrow-down.png" onclick="onRowDown()" />
+        <img class="btn-icon focus-i" src="icons/up-and-down-opposite-double-arrows-side-by-side.png" onclick="onFocusLine()" />
+        <img class="btn-icon add-i" src="icons/add.png" onclick="onAdd()" />
+        <img class="btn-icon delete-i" src="icons/trash.png" onclick="onDeleteTxt()" />
+        <select class="fonts-i" name="fonts" id="fonts" onchange="onFontFamily(this.value)">
             <option value="Impact">Impact</option>
             <option value="Ariel">Ariel</option>
             <option value="Comic Sans MS">Comic Sans MS</option>
             <option value="Montserrat">Montserrat</option>
-          </select>
-        <img class="btn-icon" src="icons/increase font - icon.png" onclick="onIncreaseFont()" />
-        <img class="btn-icon" src="icons/decrease font - icon.png" onclick="onDecreaseFont()" />
-        <img class="btn-icon" src="icons/align-to-left.png" onclick="onLeftTxt()" />
-        <img class="btn-icon" src="icons/center-text-alignment.png" onclick="onCenterTxt()" />
-        <img class="btn-icon" src="icons/align-to-right.png" onclick="onRightTxt()" />
-        <img class="btn-icon" src="icons/trash.png" onclick="onDeleteTxt()" />
-        <img class="btn-icon" src="icons/paint-board-and-brush.png">
-        <div>
-            <i class="paint-icon"></i>
-            <input  type="color" id="color" name="color" value="black" onchange="onColorTxt(this.value)"/>
-        </div>
-        <button onclick="onRowUp()">Up</button>
-        <button onclick="onRowDown()">Down</button>
-        <img class="btn-icon" src="icons/up-and-down-opposite-double-arrows-side-by-side.png" onclick="onFocusLine()" />
-        <button onclick="onSwitchLines()">Switch lines</button>
+        </select>
+        <img class="btn-icon increase-i" src="icons/increase font - icon.png" onclick="onIncreaseFont()" />
+        <img class="btn-icon decrease-i" src="icons/decrease font - icon.png" onclick="onDecreaseFont()" />
+        <img class="btn-icon left-i" src="icons/align-to-left.png" onclick="onLeftTxt()" />
+        <img class="btn-icon center-i" src="icons/center-text-alignment.png" onclick="onCenterTxt()" />
+        <img class="btn-icon right-i" src="icons/align-to-right.png" onclick="onRightTxt()" />
+        <!-- <img class="btn-icon" src="icons/paint-board-and-brush.png"> -->
+        <input class="btn-icon color-i" type="color" id="color" name="color" value="black" onchange="onColorTxt(this.value)" />
+        <img class="btn-icon switch-i" src="icons/replace.png" onclick="onSwitchLines()" />
+        <img class="btn-icon stroke-i" src="icons/text-stroke.png" onclick="onStroke()" />
+        <!-- <button onclick="onRowUp()">Up</button>
+        <button onclick="onRowDown()">Down</button> -->
     </div>
     <!-- <header class="nav-bar">I'm a NavBar</header> -->
     <div class="main-screen" onclick="toggleMenu()"></div>
@@ -56,7 +57,7 @@
     <!-- <div class="gallery-container container flex grid align-center  justify-center"> -->
     <div class="gallery-container container">
         <!-- to render it later  -->
-        <div class="grid-container">
+        <div class="gallery-grid">
             <img data-id=1 class="thumbnail-img" src="img/1.jpg" onclick="onUpdateImgMm(this)">
             <img data-id=2 class="thumbnail-img" src="img/2.jpg" onclick="onUpdateImgMm(this)">
             <img data-id=3 class="thumbnail-img" src="img/3.jpg" onclick="onUpdateImgMm(this)">
