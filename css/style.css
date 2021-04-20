@@ -1,22 +1,128 @@
-#my-canvas{
+/* #my-canvas{
     border: 2px solid black;
 }
 /* 
 .text-on-canv{
     font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
 } */
+* {
+    box-sizing: border-box;
+    user-select: none;
+}
 
-header, footer {
-    background-color: #52f3b0;
-    height: 50px;
+/* HEADER */
+
+header,footer {
+    background-color: #74acf5;
     width: 100%;
+    margin-top: 10px;
+    /* delete margin later */
+}
+
+.header-container {
+    justify-content: space-between;
+}
+
+.btn-menu {
+    display: none;
+}
+
+.nav {
+    flex-direction: row;
+    align-items: center;
+    align-content: center;
+}
+
+.nav a {
+    color: whitesmoke;
+    text-decoration: none;
+    height: 110px;
+    width: 110px;
+    transition: box-shadow .3s;
+    font-size: 1.3rem;
+    font-family: cursive;
+}
+
+
+.nav a:hover {
+    background-color: #3f8df3;
+}
+
+/* LOGO */
+
+.logo {
+    /* font-family: eurofurence, sans-serif; */
+    font-family: cursive;
+    color: whitesmoke;
+    /* height: 33px; */
+    font-size: 2rem;
+}
+
+/* FOOTER */
+
+
+
+/* LAYOUT */
+
+.container {
+    margin: 0 auto;
+    max-width: 1100px;
+}
+
+.canvas-container{
+    margin-bottom: 10px;
+}
+/* 
+.grid{
+    display: grid;
+    gap: 10px;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+} */
+.grid-container{
+    display: grid;
+    grid-template-columns: repeat(5, 200px);    
+    grid-template-rows: repeat(4, 200px);    
+    align-items: center;
+    justify-items: center; 
+    justify-content: center;
+    gap: 10px;
+}
+
+.flex {
+    display: flex;
+}
+
+.space-between {
+    justify-content: space-between;
+}
+
+.align-center {
+    align-items: center;
+}
+
+.justify-center {
+    justify-content: center;
+}
+
+/* list helpers */
+
+.clean-list {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
 }
 
 
 .thumbnail-img{
-    height: 160px;
-    width: 160px;
+    height: 200px;
+    width: 200px;
     object-fit: cover;
+}
+
+
+.thumbnail-img:hover, .btn-icon:hover{
+   cursor: pointer;
 }
 
 .gallery-container{
@@ -29,9 +135,13 @@ header, footer {
 }
 
 .btn-icon{
-    width: 25px;
-    height: 25px;
-    background-color: rgb(203, 231, 221);
+    width: 30px;
+    height: 30px;
+    background-color: rgb(223, 223, 223);
     margin-left: 10px
 }
 
+.paint-icon{
+    src: "icons/paint-board-and-brush.png";
+    background-color: rgb(216, 93, 93);
+}

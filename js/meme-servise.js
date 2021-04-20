@@ -16,14 +16,18 @@ var gMeme = {
         {
             txt: 'Top text go here',
             size: 50,
-            align: 'left',
-            color: 'red'
+            align: 'center',
+            font: 'Impact',
+            color: 'white',
+            stroke: 'black'
         },
         {
             txt: 'Bottom text go here',
             size: 50,
-            align: 'left',
-            color: 'red'
+            align: 'center',
+            font: 'Impact',
+            color: 'white',
+            stroke: 'black'
         }
     ]
 }

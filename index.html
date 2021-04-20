@@ -16,27 +16,70 @@
             Update your browser to enjoy canvas!
         </canvas>
     </div>
-    <!-- <label for="text"></label> -->
-    <!-- <form novalidate> -->
     <div class="meme-editor">
-        <input type="text" id="firstTxt" name="firstTxt" placeholder="Write your text here" required />
-        <button onclick="onUpdateTxt(0)">Update</button>
-        <input type="text" id="secondTxt" name="secondTxt" placeholder="Write your text here" required />
-        <button onclick="onUpdateTxt(1)">Update</button>
-        <img class="btn-icon" src="icons/increase font - icon.png" onclick="increaseFont()" />
-        <img class="btn-icon" src="icons/decrease font - icon.png" onclick="decreaseFont()" />
-        <!-- <img class="btn-icon" src="icons/" onclick="decreaseFont()" /> -->
-        <button onclick="rowUp()">Up</button>
-        <button onclick="rowDown()">Down</button>
-        <img class="btn-icon" src="icons/up-and-down-opposite-double-arrows-side-by-side.png" onclick="switchLines()" />
+        <input type="text" id="txt" name="txt" oninput="onUpdateTxt()" placeholder="Write your text here">
+        <select name="fonts" id="fonts" onchange="onFontFamily(this.value)">
+            <option value="Impact">Impact</option>
+            <option value="Ariel">Ariel</option>
+            <option value="Comic Sans MS">Comic Sans MS</option>
+            <option value="Montserrat">Montserrat</option>
+          </select>
+        <img class="btn-icon" src="icons/increase font - icon.png" onclick="onIncreaseFont()" />
+        <img class="btn-icon" src="icons/decrease font - icon.png" onclick="onDecreaseFont()" />
+        <img class="btn-icon" src="icons/align-to-left.png" onclick="onLeftTxt()" />
+        <img class="btn-icon" src="icons/center-text-alignment.png" onclick="onCenterTxt()" />
+        <img class="btn-icon" src="icons/align-to-right.png" onclick="onRightTxt()" />
+        <img class="btn-icon" src="icons/trash.png" onclick="onDeleteTxt()" />
+        <img class="btn-icon" src="icons/paint-board-and-brush.png">
+        <div>
+            <i class="paint-icon"></i>
+            <input  type="color" id="color" name="color" value="black" onchange="onColorTxt(this.value)"/>
+        </div>
+        <button onclick="onRowUp()">Up</button>
+        <button onclick="onRowDown()">Down</button>
+        <img class="btn-icon" src="icons/up-and-down-opposite-double-arrows-side-by-side.png" onclick="onFocusLine()" />
+        <button onclick="onSwitchLines()">Switch lines</button>
     </div>
-    <header class="nav-bar">I'm a NavBar</header>
-    <div class="gallery-container">
+    <!-- <header class="nav-bar">I'm a NavBar</header> -->
+    <div class="main-screen" onclick="toggleMenu()"></div>
+    <header>
+        <div class="header-container container flex align-center">
+            <div class="logo">MEME-GEN</div>
+            <ul class="nav flex clean-list">
+                <li><a class="flex justify-center align-center" href="#">Gallery</a></li>
+                <li><a class="flex justify-center align-center" href="#">Memes</a></li>
+                <li><a class="flex justify-center align-center" href="#">About</a></li>
+            </ul>
+            <button class="btn-menu" onclick="toggleMenu()">☰</button>
+        </div>
+    </header>
+    <!-- <div class="gallery-container container flex grid align-center  justify-center"> -->
+    <div class="gallery-container container">
         <!-- to render it later  -->
-        <img data-id=1 class="thumbnail-img" src="img/1.jpg" onclick="updateImgMm(this)">
-        <img data-id=2 class="thumbnail-img" src="img/2.jpg" onclick="updateImgMm(this)">
+        <div class="grid-container">
+            <img data-id=1 class="thumbnail-img" src="img/1.jpg" onclick="onUpdateImgMm(this)">
+            <img data-id=2 class="thumbnail-img" src="img/2.jpg" onclick="onUpdateImgMm(this)">
+            <img data-id=3 class="thumbnail-img" src="img/3.jpg" onclick="onUpdateImgMm(this)">
+            <img data-id=4 class="thumbnail-img" src="img/4.jpg" onclick="onUpdateImgMm(this)">
+            <img data-id=5 class="thumbnail-img" src="img/5.jpg" onclick="onUpdateImgMm(this)">
+            <img data-id=6 class="thumbnail-img" src="img/6.jpg" onclick="onUpdateImgMm(this)">
+            <img data-id=7 class="thumbnail-img" src="img/6.jpg" onclick="onUpdateImgMm(this)">
+            <img data-id=8 class="thumbnail-img" src="img/6.jpg" onclick="onUpdateImgMm(this)">
+            <img data-id=8 class="thumbnail-img" src="img/6.jpg" onclick="onUpdateImgMm(this)">
+            <img data-id=10 class="thumbnail-img" src="img/6.jpg" onclick="onUpdateImgMm(this)">
+            <img data-id=11 class="thumbnail-img" src="img/6.jpg" onclick="onUpdateImgMm(this)">
+            <img data-id=12 class="thumbnail-img" src="img/6.jpg" onclick="onUpdateImgMm(this)">
+            <img data-id=13 class="thumbnail-img" src="img/6.jpg" onclick="onUpdateImgMm(this)">
+            <img data-id=14 class="thumbnail-img" src="img/6.jpg" onclick="onUpdateImgMm(this)">
+            <img data-id=15 class="thumbnail-img" src="img/6.jpg" onclick="onUpdateImgMm(this)">
+            <img data-id=16 class="thumbnail-img" src="img/6.jpg" onclick="onUpdateImgMm(this)">
+            <img data-id=17 class="thumbnail-img" src="img/6.jpg" onclick="onUpdateImgMm(this)">
+            <img data-id=18 class="thumbnail-img" src="img/6.jpg" onclick="onUpdateImgMm(this)">
+        </div>
     </div>
-    <footer>I'm a footer</footer>
+    <footer class="flex">
+        <div class="flex container flex align-center">Made by Zoya Rumin</div>
+    </footer>
     <script src="js/meme-servise.js"></script>
     <script src="js/controller.js"></script>
 </body>
