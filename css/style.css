@@ -11,6 +11,12 @@
     user-select: none;
 }
 
+html, body{
+    height: 100%;
+    width: 100%;
+}
+
+
 body {
     background-color: ghostwhite;
     margin: 0;
@@ -30,16 +36,15 @@ body.modal-mode{
 
 .modal {
     position: absolute;
-    top: 110px;
+    top: 80px;
     left: 0;
     right: 0;
-    height: 100%;
+    height: 100vh;
     width: 100%;
     background-color: ghostwhite;
     z-index: 1;
 }
 /* 
-
 
 /* HEADER */
 
@@ -69,8 +74,9 @@ header, footer {
 .nav a {
     color: whitesmoke;
     text-decoration: none;
-    height: 110px;
-    width: 110px;
+    height: 80px;
+    width: 80px;
+    margin-left: 80px;
     transition: box-shadow .3s;
     font-size: 1.3rem;
     font-family: cursive;
@@ -107,34 +113,6 @@ footer{
     margin-bottom: 10px;
 }
 
-/* 
-.grid{
-    display: grid;
-    gap: 10px;
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: 1fr 1fr;
-} */
-
-/* 
-.open-modal{
-    display: block;
-}
-
-.meme-modal {
-    display: none;
-    position: fixed;
-    height: 100vh;
-    width: 100%;
-    background-color: #ffffff;
-    text-align: center;
-    padding: 20px;
-}
-
-body.open-modal .meme-modal {
-    display: block;
-} 
- */
-
 .meme-area {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -148,8 +126,8 @@ body.open-modal .meme-modal {
 
 .gallery-grid {
     display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    grid-template-rows: repeat(4, 1fr);
+    grid-template-columns: repeat(5, 200px);
+    grid-template-rows: repeat(4, 200px);
     align-items: center;
     justify-items: center;
     justify-content: center;
@@ -237,8 +215,10 @@ body.open-modal .meme-modal {
     width: 50px;
     height: 50px;
     background-color: rgb(236, 233, 233);
+    /* border: 1px solid rgb(192, 192, 192); */
     margin-left: 10px;
-    border-radius: 20%;
+    border-radius: 10%;
+    box-shadow: 1px 1px 1px grey;
 }
 
 .btn-icon:hover {
@@ -248,4 +228,33 @@ body.open-modal .meme-modal {
 .paint-icon {
     src: "icons/paint-board-and-brush.png";
     background-color: rgb(216, 93, 93);
+}
+
+@media (max-width: 700px) {
+    .gallery-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 150px);
+        grid-template-rows: repeat(9, 150px);
+        align-items: center;
+        justify-items: center;
+        justify-content: center;
+        gap: 10px;
+    }
+
+    .thumbnail-img{
+        height: 150px;
+        width: 150px;
+    }
+
+    .meme-area {
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-rows: repeat(2, 1fr);
+        justify-items: center;
+        justify-content: center;
+        background-color: honeydew;
+        /* height: 100vh;
+        width: 100%; */
+        background-color: #ffffff;
+    }
 }
