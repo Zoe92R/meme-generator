@@ -21,7 +21,7 @@ function renderCanvas() {
         // drawText(gMeme.lines[0].txt, 250,gMeme.lines[0].size);
         drawText(0, gMeme.lines[0].txt, gPos0.x, gPos0.y);
         drawText(1, gMeme.lines[1].txt, gPos1.x, gPos1.y);
-
+        // drawRect();
     }
 }
 
@@ -30,6 +30,14 @@ function renderCanvas() {
 //     gCtx.fillStyle = 'red'
 //     gCtx.fill();
 // }
+
+// function drawRect() {
+//     gCtx.strokeStyle = "red";
+//     con.lineWidth = "2";
+//     // con.fillRect(10, 10, 180, 80);
+//     con.strokeRect(10, 110, 180, 80);
+// }
+
 
 function drawText(rowNum, txt, x, y) {
     // console.log(txt);
@@ -43,8 +51,10 @@ function drawText(rowNum, txt, x, y) {
     gCtx.strokeStyle = `${gMeme.lines[rowNum].stroke}`;
     // gCtx.textAlign = 'center';
     // gCtx.strokeStyle = 'white';
+    gCtx.textBaseline = 'top';
     gCtx.fillText(txt, x, y);
     gCtx.strokeText(txt, x, y);
+
 }
 
 function onFocusLine() {
@@ -60,10 +70,11 @@ function onUpdateTxt() {
 
 function onUpdateImgMm(elImg) {
     gMeme.selectedImgId = elImg.dataset.id;
+    onOpenMmModal();
     renderCanvas();
 }
 
-function onFontFamily(font){
+function onFontFamily(font) {
     console.log(font);
     gMeme.lines[gRowNum].font = font;
     renderCanvas();
@@ -106,15 +117,15 @@ function onRightTxt() {
     console.log('to right');
     // gCanvas.setAttribute('dir','rtl');
     // gCtx.direction = 'rtl'
-    gPos0.x = gCanvas.width/2;
+    gPos0.x = gCanvas.width / 2;
     // gPos0.x = 0;
     gMeme.lines[gRowNum].align = 'left';
-     ///to fix this
+    ///to fix this
     renderCanvas();
 }
 
 function onCenterTxt() {
-    gPos0.x = gCanvas.width/2;
+    gPos0.x = gCanvas.width / 2;
     gMeme.lines[gRowNum].align = 'center';
     renderCanvas();
 }
@@ -124,7 +135,28 @@ function onDeleteTxt() {
     renderCanvas();
 }
 
-function onColorTxt(color){
+function onColorTxt(color) {
     gMeme.lines[gRowNum].color = color;
     renderCanvas();
 }
+
+
+function onStroke(stroke) {
+    console.log(stroke);
+    gMeme.lines[gRowNum].stroke = stroke;
+    renderCanvas();
+}
+
+function onOpenMmModal() {
+    var elModal = document.querySelector('.meme-modal');
+    elModal.hidden = false;
+    // var elModalMode = document.querySelector('.modal-mode');
+    document.body.classList.add("modal-mode");
+}
+
+function onCloseMeme() {
+    var elModal = document.querySelector('.meme-modal');
+    document.body.classList.remove("modal-mode");
+    elModal.hidden = true;
+}
+

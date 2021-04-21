@@ -10,39 +10,7 @@
 </head>
 
 <body onload="init()">
-    <div class="canvas-container">
-        <!-- <canvas id="my-canvas" width="500" height="500" onclick="draw(event)"> -->
-        <canvas id="my-canvas" width="500" height="500">
-            Update your browser to enjoy canvas!
-        </canvas>
-    </div>
-    <div class="meme-editor meme-grid">
-        <input class="text-i" type="text" id="txt" name="txt" oninput="onUpdateTxt()" placeholder="Write your text here">
-        <img class="btn-icon up-i" src="icons/arrow-up.png" onclick="onRowUp()" />
-        <img class="btn-icon down-i" src="icons/arrow-down.png" onclick="onRowDown()" />
-        <img class="btn-icon focus-i" src="icons/up-and-down-opposite-double-arrows-side-by-side.png" onclick="onFocusLine()" />
-        <img class="btn-icon add-i" src="icons/add.png" onclick="onAdd()" />
-        <img class="btn-icon delete-i" src="icons/trash.png" onclick="onDeleteTxt()" />
-        <select class="fonts-i" name="fonts" id="fonts" onchange="onFontFamily(this.value)">
-            <option value="Impact">Impact</option>
-            <option value="Ariel">Ariel</option>
-            <option value="Comic Sans MS">Comic Sans MS</option>
-            <option value="Montserrat">Montserrat</option>
-        </select>
-        <img class="btn-icon increase-i" src="icons/increase font - icon.png" onclick="onIncreaseFont()" />
-        <img class="btn-icon decrease-i" src="icons/decrease font - icon.png" onclick="onDecreaseFont()" />
-        <img class="btn-icon left-i" src="icons/align-to-left.png" onclick="onLeftTxt()" />
-        <img class="btn-icon center-i" src="icons/center-text-alignment.png" onclick="onCenterTxt()" />
-        <img class="btn-icon right-i" src="icons/align-to-right.png" onclick="onRightTxt()" />
-        <!-- <img class="btn-icon" src="icons/paint-board-and-brush.png"> -->
-        <input class="btn-icon color-i" type="color" id="color" name="color" value="black" onchange="onColorTxt(this.value)" />
-        <img class="btn-icon switch-i" src="icons/replace.png" onclick="onSwitchLines()" />
-        <img class="btn-icon stroke-i" src="icons/text-stroke.png" onclick="onStroke()" />
-        <!-- <button onclick="onRowUp()">Up</button>
-        <button onclick="onRowDown()">Down</button> -->
-    </div>
-    <!-- <header class="nav-bar">I'm a NavBar</header> -->
-    <div class="main-screen" onclick="toggleMenu()"></div>
+    <!-- <div class="main-screen" onclick="toggleModal()"></div> -->
     <header>
         <div class="header-container container flex align-center">
             <div class="logo">MEME-GEN</div>
@@ -64,20 +32,63 @@
             <img data-id=4 class="thumbnail-img" src="img/4.jpg" onclick="onUpdateImgMm(this)">
             <img data-id=5 class="thumbnail-img" src="img/5.jpg" onclick="onUpdateImgMm(this)">
             <img data-id=6 class="thumbnail-img" src="img/6.jpg" onclick="onUpdateImgMm(this)">
-            <img data-id=7 class="thumbnail-img" src="img/6.jpg" onclick="onUpdateImgMm(this)">
-            <img data-id=8 class="thumbnail-img" src="img/6.jpg" onclick="onUpdateImgMm(this)">
-            <img data-id=8 class="thumbnail-img" src="img/6.jpg" onclick="onUpdateImgMm(this)">
-            <img data-id=10 class="thumbnail-img" src="img/6.jpg" onclick="onUpdateImgMm(this)">
-            <img data-id=11 class="thumbnail-img" src="img/6.jpg" onclick="onUpdateImgMm(this)">
-            <img data-id=12 class="thumbnail-img" src="img/6.jpg" onclick="onUpdateImgMm(this)">
-            <img data-id=13 class="thumbnail-img" src="img/6.jpg" onclick="onUpdateImgMm(this)">
-            <img data-id=14 class="thumbnail-img" src="img/6.jpg" onclick="onUpdateImgMm(this)">
-            <img data-id=15 class="thumbnail-img" src="img/6.jpg" onclick="onUpdateImgMm(this)">
-            <img data-id=16 class="thumbnail-img" src="img/6.jpg" onclick="onUpdateImgMm(this)">
-            <img data-id=17 class="thumbnail-img" src="img/6.jpg" onclick="onUpdateImgMm(this)">
-            <img data-id=18 class="thumbnail-img" src="img/6.jpg" onclick="onUpdateImgMm(this)">
+            <img data-id=7 class="thumbnail-img" src="img/7.jpg" onclick="onUpdateImgMm(this)">
+            <img data-id=8 class="thumbnail-img" src="img/8.jpg" onclick="onUpdateImgMm(this)">
+            <img data-id=8 class="thumbnail-img" src="img/9.jpg" onclick="onUpdateImgMm(this)">
+            <img data-id=10 class="thumbnail-img" src="img/10.jpg" onclick="onUpdateImgMm(this)">
+            <img data-id=11 class="thumbnail-img" src="img/11.jpg" onclick="onUpdateImgMm(this)">
+            <img data-id=12 class="thumbnail-img" src="img/12.jpg" onclick="onUpdateImgMm(this)">
+            <img data-id=13 class="thumbnail-img" src="img/13.jpg" onclick="onUpdateImgMm(this)">
+            <img data-id=14 class="thumbnail-img" src="img/14.jpg" onclick="onUpdateImgMm(this)">
+            <img data-id=15 class="thumbnail-img" src="img/15.jpg" onclick="onUpdateImgMm(this)">
+            <img data-id=16 class="thumbnail-img" src="img/16.jpg" onclick="onUpdateImgMm(this)">
+            <img data-id=17 class="thumbnail-img" src="img/17.jpg" onclick="onUpdateImgMm(this)">
+            <img data-id=18 class="thumbnail-img" src="img/18.jpg" onclick="onUpdateImgMm(this)">
         </div>
     </div>
+    <div class="meme-modal" hidden>
+        <btn class="close-meme" onclick="onCloseMeme()">close</btn>
+        <div class="meme-area container">
+            <div class="canvas-container">
+                <!-- <canvas id="my-canvas" width="500" height="500" onclick="draw(event)"> -->
+                <canvas id="my-canvas" width="500" height="500">
+                    Update your browser to enjoy canvas!
+                </canvas>
+            </div>
+            <div class="meme-editor meme-grid">
+                <input class="text-i" type="text" id="txt" name="txt" oninput="onUpdateTxt()"
+                    placeholder="Write your text here">
+                <img class="btn-icon up-i" src="icons/arrow-up.png" onclick="onRowUp()" />
+                <img class="btn-icon down-i" src="icons/arrow-down.png" onclick="onRowDown()" />
+                <img class="btn-icon focus-i" src="icons/up-and-down-opposite-double-arrows-side-by-side.png"
+                    onclick="onFocusLine()" />
+                <img class="btn-icon add-i" src="icons/add.png" onclick="onAdd()" />
+                <img class="btn-icon delete-i" src="icons/trash.png" onclick="onDeleteTxt()" />
+                <select class="fonts-i" name="fonts" id="fonts" onchange="onFontFamily(this.value)">
+                    <option value="Impact">Impact</option>
+                    <option value="Ariel">Ariel</option>
+                    <option value="Comic Sans MS">Comic Sans MS</option>
+                    <option value="Montserrat">Montserrat</option>
+                </select>
+                <img class="btn-icon increase-i" src="icons/increase font - icon.png" onclick="onIncreaseFont()" />
+                <img class="btn-icon decrease-i" src="icons/decrease font - icon.png" onclick="onDecreaseFont()" />
+                <img class="btn-icon left-i" src="icons/align-to-left.png" onclick="onLeftTxt()" />
+                <img class="btn-icon center-i" src="icons/center-text-alignment.png" onclick="onCenterTxt()" />
+                <img class="btn-icon right-i" src="icons/align-to-right.png" onclick="onRightTxt()" />
+                <!-- <img class="btn-icon" src="icons/paint-board-and-brush.png"> -->
+                <input class="btn-icon color-i" type="color" id="color" name="color" value="white"
+                    onchange="onColorTxt(this.value)" />
+                <input class="btn-icon color-i" type="color" id="stroke" name="stroke" value="black"
+                    onchange="onStroke(this.value)" />
+                <img class="btn-icon switch-i" src="icons/replace.png" onclick="onSwitchLines()" />
+                <!-- <img class="btn-icon stroke-i" src="icons/text-stroke.png" onclick="onStroke()" /> -->
+                <!-- <button onclick="onRowUp()">Up</button>
+            <button onclick="onRowDown()">Down</button> -->
+            </div>
+        </div>
+
+    </div>
+    <!-- <header class="nav-bar">I'm a NavBar</header> -->
     <footer class="flex">
         <div class="flex container flex align-center">Made by Zoya Rumin</div>
     </footer>

@@ -34,12 +34,13 @@ var gMeme = {
 
 var gPos0 = {
     x: 250,
-    y: gMeme.lines[0].size,
+    y: 0,
+    // y: gMeme.lines[0].size,
     rowJump: gMeme.lines[0].size
 }
 var gPos1 = {
     x: 250,
-    y: 480,
+    y: 450,
     rowJump: gMeme.lines[1].size
 }
 
