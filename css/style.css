@@ -21,11 +21,11 @@ body {
 h1, h2, h3, h4, p {
     margin: 0;
 }
-
+/* 
 body.modal-mode{
     height: 100vh;
     overflow-y: hidden;
-}
+} */
 
 
 .meme-modal {
@@ -37,10 +37,8 @@ body.modal-mode{
     background-color: ghostwhite;
     z-index: 1;
 }
+/* 
 
-body .meme-modal {
-    overflow-y: hidden;
-}
 
 /* HEADER */
 
@@ -48,6 +46,12 @@ header, footer {
     background-color: #74acf5;
     width: 100%;
     /* position: fixed; */
+}
+
+
+header{
+    /* position: fixed;
+    top:0; */
 }
 
 .header-container {
@@ -176,7 +180,9 @@ body.open-modal .meme-modal {
 
 .fonts-i {
     grid-row: 4;
-    grid-column: 4/6;
+    grid-column: 3/6;
+    width: 100%;
+    height: 30px;
 }
 
 .flex {

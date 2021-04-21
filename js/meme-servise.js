@@ -1,5 +1,7 @@
 'use strict';
 
+
+
 var gKeywords = { 'happy': 12, 'funny puk': 1 }
 
 var gImgs = [
@@ -19,7 +21,11 @@ var gMeme = {
             align: 'center',
             font: 'Impact',
             color: 'white',
-            stroke: 'black'
+            stroke: 'black',
+            pos: {
+                x: 250,
+                y: 0
+            }
         },
         {
             txt: 'Bottom text go here',
@@ -27,20 +33,27 @@ var gMeme = {
             align: 'center',
             font: 'Impact',
             color: 'white',
-            stroke: 'black'
+            stroke: 'black',
+            pos: {
+                x: 250,
+                y: 450
+            }
         }
     ]
 }
 
-var gPos0 = {
-    x: 250,
-    y: 0,
-    // y: gMeme.lines[0].size,
-    rowJump: gMeme.lines[0].size
+function addLine() {
+    var line = {
+        txt: 'Add text here',
+        size: 50,
+        align: 'center',
+        font: 'Impact',
+        color: 'white',
+        stroke: 'black',
+        pos: {
+            x: 250,
+            y: 200
+        }
+    }
+    gMeme.lines.push(line);
 }
-var gPos1 = {
-    x: 250,
-    y: 450,
-    rowJump: gMeme.lines[1].size
-}
-
