@@ -6,6 +6,7 @@ let gCtx;
 function init() {
     gCanvas = document.querySelector('#my-canvas');
     gCtx = gCanvas.getContext('2d');
+    createGMeme();
     renderCanvas();
 }
 
@@ -49,6 +50,7 @@ function onAddLine() {
     addLine();
     gMeme.selectedLineIdx = gMeme.lines.length - 1;
     renderCanvas();
+    renderInputBox();
 }
 
 function onUpdateTxt() {
@@ -66,6 +68,7 @@ function drawRect(y) {
 }
 
 function onUpdateImgMm(elImg) {
+    createGMeme();
     gMeme.selectedImgId = elImg.dataset.id;
     onOpenMmModal();
     renderCanvas();
@@ -121,7 +124,7 @@ function onCenterTxt() {
 }
 
 function onDeleteTxt() {
-    gMeme.lines[gMeme.selectedLineIdx].txt = '';
+    gMeme.lines.splice(gMeme.selectedLineIdx, 1);
     renderCanvas();
 }
 
@@ -137,14 +140,14 @@ function onStroke(stroke) {
 }
 
 function onOpenMmModal() {
-    var elModal = document.querySelector('.meme-modal');
+    var elModal = document.querySelector('.modal');
     elModal.hidden = false;
     // var elModalMode = document.querySelector('.modal-mode');
     document.body.classList.add("modal-mode");
 }
 
 function onCloseMeme() {
-    var elModal = document.querySelector('.meme-modal');
+    var elModal = document.querySelector('.modal');
     document.body.classList.remove("modal-mode");
     elModal.hidden = true;
 }
@@ -153,10 +156,17 @@ function onCloseMeme() {
 placeholder="Write your text here"> */}
 
 function renderInputBox() {
+    console.log('hello rneder box')
     var elBox = document.querySelector('.text-i');
     var defultTxt = ['Top text go here', 'Bottom text go here', 'Add text here'];
     var currTxt = gMeme.lines[gMeme.selectedLineIdx].txt;
-    if (!defultTxt.indexOf(currTxt) === -1){
+    console.log(currTxt);
+    console.log(elBox.placeholder)
+    if (defultTxt.indexOf(currTxt) === -1) {
+        console.log('not defult')
         elBox.value = gMeme.lines[gMeme.selectedLineIdx].txt;
+    } else {
+        elBox.value='';
+        elBox.placeholder - 'write your text here';
     }
 }
