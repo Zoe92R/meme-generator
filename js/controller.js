@@ -19,7 +19,7 @@ function renderCanvas() {
         if (gMeme.lines.length > 0) {
             var rowNum = gMeme.selectedLineIdx;
             drawRect(gMeme.lines[rowNum].pos.y);
-            gMeme.lines.forEach(function (line, index) {
+            gMeme.lines.forEach((line, index) => {
                 drawText(index, line.txt, line.pos.x, line.pos.y);
             });
         }
@@ -180,11 +180,12 @@ function downloadImg(elLink) {
 
 // function myFunction(x) {
 //     if (x.matches) { // If media query matches
-//         document.body.style.backgroundColor = "yellow";
+//         // document.body.style.backgroundColor = "yellow";
 //         window.addEventListener('resize', function () {
 //             gCanvas.width = window.innerWidth;
-//             gCanvas.height = window.innerHeight;
-//             resizeCanvas()
+//             gCanvas.height = window.innerWidth;
+//             // resizeCanvas();
+//             renderCanvas();
 //         })
 
 //     } else {
@@ -193,5 +194,7 @@ function downloadImg(elLink) {
 // }
 
 // var x = window.matchMedia("(max-width: 700px)")
+// console.log('lisener has added')
 // myFunction(x) // Call listener function at run time
 // x.addListener(myFunction)
+

@@ -51,48 +51,46 @@
         <div class="meme-area container">
             <div class="canvas-container">
                 <!-- <canvas id="my-canvas" width="500" height="500" onclick="draw(event)"> -->
-                    <canvas id="my-canvas" width="500" height="500">
-                        Update your browser to enjoy canvas!
-                    </canvas>
-                </div>
-                <div class="meme-editor meme-grid">
-                    <input class="text-i" type="text" id="txt" name="txt" oninput="onUpdateTxt()"
-                    placeholder="Write your text here">
-                    <img class="btn-icon up-i" src="icons/arrow-up.png" onclick="onRowUp()" />
-                    <img class="btn-icon down-i" src="icons/arrow-down.png" onclick="onRowDown()" />
-                    <img class="btn-icon focus-i" src="icons/up-and-down-opposite-double-arrows-side-by-side.png"
-                    onclick="onFocusLine()" />
-                    <img class="btn-icon add-i" src="icons/add.png" onclick="onAddLine()" />
-                    <img class="btn-icon delete-i" src="icons/trash.png" onclick="onDeleteTxt()" />
-                    <select class="fonts-i" name="fonts" id="fonts" onchange="onFontFamily(this.value)">
-                        <option value="Impact">Impact</option>
-                        <option value="Ariel">Ariel</option>
-                        <option value="Comic Sans MS">Comic Sans MS</option>
-                        <option value="Montserrat">Montserrat</option>
-                    </select>
-                    <img class="btn-icon increase-i" src="icons/increase font - icon.png" onclick="onIncreaseFont()" />
-                    <img class="btn-icon decrease-i" src="icons/decrease font - icon.png" onclick="onDecreaseFont()" />
-                    <img class="btn-icon left-i" src="icons/align-to-left.png" onclick="onLeftTxt()" />
-                    <img class="btn-icon center-i" src="icons/center-text-alignment.png" onclick="onCenterTxt()" />
-                    <img class="btn-icon right-i" src="icons/align-to-right.png" onclick="onRightTxt()" />
-                    <!-- <img class="btn-icon" src="icons/paint-board-and-brush.png"> -->
-                    <input class="btn-icon color-i" type="color" id="color" name="color" value="white"
-                    onchange="onColorTxt(this.value)" />
-                    <input class="btn-icon color-i" type="color" id="stroke" name="stroke" value="black"
-                    onchange="onStroke(this.value)" />
-                    <div class="inputs">
-                        <a href="#" class="btn-icon" onclick="downloadImg(this)" download="my-img.jpg">Download</a>
-                        
-                    </div>
-                </div>
-                
+                <canvas id="my-canvas" width="500" height="500">
+                    Update your browser to enjoy canvas!
+                </canvas>
             </div>
-            <!-- <header class="nav-bar">I'm a NavBar</header> -->
-            <footer class="flex">
-                <div class="flex container flex align-center">Made by Zoya Rumin</div>
-            </footer>
-            <script src="js/meme-servise.js"></script>
-            <script src="js/controller.js"></script>
-        </body>
+            <div class="meme-editor meme-grid">
+                <input class="text-i" type="text" id="txt" name="txt" oninput="onUpdateTxt()"
+                    placeholder="Write your text here">
+                <img class="btn-icon up-i" src="icons/arrow-up.png" onclick="onRowUp()" />
+                <img class="btn-icon down-i" src="icons/arrow-down.png" onclick="onRowDown()" />
+                <img class="btn-icon focus-i" src="icons/up-and-down-opposite-double-arrows-side-by-side.png"
+                    onclick="onFocusLine()" />
+                <img class="btn-icon add-i" src="icons/add.png" onclick="onAddLine()" />
+                <img class="btn-icon delete-i" src="icons/trash.png" onclick="onDeleteTxt()" />
+                <select class="fonts-i" name="fonts" id="fonts" onchange="onFontFamily(this.value)">
+                    <option value="Impact">Impact</option>
+                    <option value="Ariel">Ariel</option>
+                    <option value="Comic Sans MS">Comic Sans MS</option>
+                    <option value="Montserrat">Montserrat</option>
+                </select>
+                <img class="btn-icon increase-i" src="icons/increase font - icon.png" onclick="onIncreaseFont()" />
+                <img class="btn-icon decrease-i" src="icons/decrease font - icon.png" onclick="onDecreaseFont()" />
+                <img class="btn-icon left-i" src="icons/align-to-left.png" onclick="onLeftTxt()" />
+                <img class="btn-icon center-i" src="icons/center-text-alignment.png" onclick="onCenterTxt()" />
+                <img class="btn-icon right-i" src="icons/align-to-right.png" onclick="onRightTxt()" />
+                <!-- <img class="btn-icon" src="icons/paint-board-and-brush.png"> -->
+                <input class="btn-icon color-i" type="color" id="color" name="color" value="white"
+                    onchange="onColorTxt(this.value)" />
+                <input class="btn-icon color-i" type="color" id="stroke" name="stroke" value="black"
+                    onchange="onStroke(this.value)" />
+                <div class="inputs">
+                    <a href="#" class="btn-icon" onclick="downloadImg(this)" download="my-img.jpg">Download</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer class="flex">
+        <div class="flex container flex align-center">Made by Zoya Rumin</div>
+    </footer>
+    <script src="js/meme-servise.js"></script>
+    <script src="js/controller.js"></script>
+</body>
 
 </html>
