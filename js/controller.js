@@ -3,6 +3,7 @@
 let gCanvas;
 let gCtx;
 
+
 function init() {
     gCanvas = document.querySelector('#my-canvas');
     gCtx = gCanvas.getContext('2d');
@@ -16,7 +17,7 @@ function renderCanvas() {
     elImg.src = `img/${imgNum}.jpg`;
     elImg.onload = () => {
         gCtx.drawImage(elImg, 0, 0, gCanvas.width, gCanvas.height);
-        if (gMeme.lines.length > 0) {
+        if (gIsLines) {
             var rowNum = gMeme.selectedLineIdx;
             drawRect(gMeme.lines[rowNum].pos.y);
             gMeme.lines.forEach((line, index) => {
@@ -26,33 +27,26 @@ function renderCanvas() {
     }
 }
 
-function resizeCanvas() {
-    var elContainer = document.querySelector('.canvas-container');
-    gCanvas.width = elContainer.offsetWidth
-    gCanvas.height = elContainer.offsetHeight
-}
-
 function drawText(rowNum, txt, x, y) {
     gCtx.font = `${gMeme.lines[rowNum].size}px ${gMeme.lines[rowNum].font}`;
-    gCtx.textAlign = `${gMeme.lines[rowNum].align}`;
-    gCtx.fillStyle = `${gMeme.lines[rowNum].color}`;
-    gCtx.strokeStyle = `${gMeme.lines[rowNum].stroke}`;
-    gCtx.textBaseline = 'top';
+    gCtx.textAlign = gMeme.lines[rowNum].align;
+    gCtx.fillStyle = gMeme.lines[rowNum].color;
+    gCtx.strokeStyle = gMeme.lines[rowNum].stroke;
+    gCtx.lineWidth = 4;
+    gCtx.textBaseline = 'top'; /// to add textBaseline to gMeme
+    // gCtx.textBaseline = gMeme.lines[rowNum].textBaseline;
     gCtx.strokeText(txt, x, y);
     gCtx.fillText(txt, x, y);
 }
 
 function onFocusLine() {
-    var numberOfRows = gMeme.lines.length;
-    gMeme.selectedLineIdx++;
-    if (gMeme.selectedLineIdx >= numberOfRows) gMeme.selectedLineIdx = 0;
+    focusLine();
     renderCanvas();
     renderInputBox();
 }
 
 function onAddLine() {
     addLine();
-    gMeme.selectedLineIdx = gMeme.lines.length - 1;
     renderCanvas();
     renderInputBox();
 }
@@ -60,9 +54,11 @@ function onAddLine() {
 function onUpdateTxt() {
     var elTxt = document.querySelector('input[name=txt]');
     var txt = elTxt.value;
-    gMeme.lines[gMeme.selectedLineIdx].txt = txt;
+    updateTxt(txt);
+    // gMeme.lines[gMeme.selectedLineIdx].txt = txt;
     renderCanvas();
 }
+
 function drawRect(y) {
     gCtx.beginPath();
     gCtx.rect(0, y, gCanvas.width, gMeme.lines[gMeme.selectedLineIdx].size);
@@ -77,63 +73,39 @@ function onUpdateImgMm(elImg) {
     renderCanvas();
 }
 
-function onFontFamily(font) {
-    console.log(font);
-    gMeme.lines[gMeme.selectedLineIdx].font = font;
+function onChangeFont(font) {
+    changeFont(font);
     renderCanvas();
 }
 
-function onIncreaseFont() {
-    gMeme.lines[gMeme.selectedLineIdx].size += 2;
+function onChangeFontSize(mult) {
+    changeFontSize(mult);
     renderCanvas();
 }
 
-function onDecreaseFont() {
-    gMeme.lines[gMeme.selectedLineIdx].size -= 2;
+function onMoveRow(direction) {
+    moveRow(direction);
     renderCanvas();
 }
 
-function onRowDown() {
-    gMeme.lines[gMeme.selectedLineIdx].pos.y += gMeme.lines[gMeme.selectedLineIdx].size;
-    renderCanvas();
-}
-
-function onRowUp() {
-    gMeme.lines[gMeme.selectedLineIdx].pos.y -= gMeme.lines[gMeme.selectedLineIdx].size;
-    renderCanvas();
-}
-
-function onLeftTxt() {
-    gMeme.lines[gMeme.selectedLineIdx].pos.x = 0;
-    gMeme.lines[gMeme.selectedLineIdx].align = 'left';
-    renderCanvas();
-}
-
-function onRightTxt() {
-    gMeme.lines[gMeme.selectedLineIdx].pos.x = gCanvas.width;
-    gMeme.lines[gMeme.selectedLineIdx].align = 'right';
-    renderCanvas();
-}
-
-function onCenterTxt() {
-    gMeme.lines[gMeme.selectedLineIdx].pos.x = gCanvas.width / 2;
-    gMeme.lines[gMeme.selectedLineIdx].align = 'center';
+function onAlignTxt(align){
+    alignTxt(align);
     renderCanvas();
 }
 
 function onDeleteTxt() {
-    gMeme.lines.splice(gMeme.selectedLineIdx, 1);
+    deleteTxt();
+    focusLine();
     renderCanvas();
 }
 
 function onColorTxt(color) {
-    gMeme.lines[gMeme.selectedLineIdx].color = color;
+    colorTxt(color);
     renderCanvas();
 }
 
-function onStroke(stroke) {
-    console.log(stroke);
-    gMeme.lines[gMeme.selectedLineIdx].stroke = stroke;
+function onStrokeTxt(stroke) {
+    strokeTxt(stroke);
     renderCanvas();
 }
 
@@ -155,14 +127,11 @@ function onCloseMeme() {
 }
 
 function renderInputBox() {
-    console.log('hello rneder box')
+    if (!gIsLines) return;
     var elBox = document.querySelector('.text-i');
     var defultTxt = ['Top text go here', 'Bottom text go here', 'Add text here'];
     var currTxt = gMeme.lines[gMeme.selectedLineIdx].txt;
-    console.log(currTxt);
-    console.log(elBox.placeholder)
     if (defultTxt.indexOf(currTxt) === -1) {
-        console.log('not defult')
         elBox.value = gMeme.lines[gMeme.selectedLineIdx].txt;
     } else {
         elBox.value = '';
@@ -176,21 +145,25 @@ function downloadImg(elLink) {
     elLink.download = 'my-meme';
 }
 
-
+// function resizeCanvas() {
+//     var elContainer = document.querySelector('.canvas-container');
+//     gCanvas.width = elContainer.offsetWidth
+//     gCanvas.height = elContainer.offsetHeight
+// }
 
 // function myFunction(x) {
-//     if (x.matches) { // If media query matches
-//         // document.body.style.backgroundColor = "yellow";
-//         window.addEventListener('resize', function () {
-//             gCanvas.width = window.innerWidth;
-//             gCanvas.height = window.innerWidth;
-//             // resizeCanvas();
-//             renderCanvas();
-//         })
+//         if (x.matches) { // If media query matches
+//             // document.body.style.backgroundColor = "yellow";
+//             window.addEventListener('resize', function () {
+//                     gCanvas.width = window.innerWidth;
+//                     gCanvas.height = window.innerWidth;
+//                     // resizeCanvas();
+//                     renderCanvas();
+//                 })
 
-//     } else {
-//         // document.body.style.backgroundColor = "pink";
-//     }
+//             } else {
+//                     // document.body.style.backgroundColor = "pink";
+//                 }
 // }
 
 // var x = window.matchMedia("(max-width: 700px)")

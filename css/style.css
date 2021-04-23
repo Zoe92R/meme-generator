@@ -133,16 +133,16 @@ footer{
     align-items: center;
     justify-items: center;
     justify-content: center;
-    gap: 5px;
+    gap: 8px;
 }
 
 .meme-grid {
     display: inline-grid;
     grid-template-columns: repeat(5, 50px); 
-    /* grid-template-rows: repeat(5, 50px);
+    grid-template-rows: repeat(5, 50px);
     align-items: center;
     justify-items: center;
-    justify-content: center; */
+    justify-content: center; 
     gap: 15px; 
 }
 
