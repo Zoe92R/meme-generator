@@ -126,6 +126,11 @@ function onCloseMeme() {
     elGallery.style.display = "block";
 }
 
+function toggleMenu() {
+    document.body.classList.toggle('menu-open');
+    console.log('clicked on toggle')
+}
+
 function renderInputBox() {
     if (!gIsLines) return;
     var elBox = document.querySelector('.text-i');
@@ -144,6 +149,7 @@ function downloadImg(elLink) {
     elLink.href = data;
     elLink.download = 'my-meme';
 }
+
 
 // function resizeCanvas() {
 //     var elContainer = document.querySelector('.canvas-container');

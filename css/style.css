@@ -11,28 +11,26 @@
     user-select: none;
 }
 
-html, body{
+html, body {
     height: 100%;
     width: 100%;
 }
-
 
 body {
     background-color: ghostwhite;
     margin: 0;
     font-size: 1rem;
-
 }
 
 h1, h2, h3, h4, p {
     margin: 0;
 }
+
 /* 
 body.modal-mode{
     height: 100vh;
     overflow-y: hidden;
 } */
-
 
 .modal {
     position: absolute;
@@ -44,6 +42,7 @@ body.modal-mode{
     background-color: ghostwhite;
     z-index: 1;
 }
+
 /* 
 
 /* HEADER */
@@ -53,11 +52,9 @@ header, footer {
     width: 100%;
 }
 
-
-
-
 .header-container {
     justify-content: space-between;
+    /* width: 100%; */
 }
 
 .btn-menu {
@@ -74,8 +71,7 @@ header, footer {
     color: whitesmoke;
     text-decoration: none;
     height: 80px;
-    width: 80px;
-    margin-left: 80px;
+    width: 100px;
     transition: box-shadow .3s;
     font-size: 1.3rem;
     font-family: cursive;
@@ -97,9 +93,9 @@ header, footer {
 
 /* FOOTER */
 
-footer{
+footer {
     margin-top: 10px;
-    bottom:0;
+    bottom: 0;
     position: fixed;
 }
 
@@ -107,7 +103,9 @@ footer{
 
 .container {
     margin: 0 auto;
-    max-width: 1100px;
+    /* max-width: 1100px; */
+    padding-left: 40px;
+    padding-right: 40px;
 }
 
 .canvas-container {
@@ -127,7 +125,7 @@ footer{
 
 .gallery-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, 200px );
+    grid-template-columns: repeat(auto-fit, 200px);
     /* grid-template-columns: repeat(5, 200px);
     grid-template-rows: repeat(4, 200px); */
     align-items: center;
@@ -138,12 +136,12 @@ footer{
 
 .meme-grid {
     display: inline-grid;
-    grid-template-columns: repeat(5, 50px); 
+    grid-template-columns: repeat(5, 50px);
     grid-template-rows: repeat(5, 50px);
     align-items: center;
     justify-items: center;
-    justify-content: center; 
-    gap: 15px; 
+    justify-content: center;
+    gap: 15px;
 }
 
 .text-i {
@@ -243,12 +241,69 @@ footer{
         justify-content: center;
         gap: 10px;
     } */
-/* 
+    /* 
     .thumbnail-img{
         height: 150px;
         width: 150px;
     } */
+    /* .nav a {
+        color: whitesmoke;
+        text-decoration: none;
+        height:0px;
+        width: 0px;
+    } */
+    .main-screen {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, .5);
+        cursor: pointer;
+        pointer-events: none;
+        opacity: 0;
+        transition: opacity .8s;
+    }
 
+    .btn-menu {
+        display: block;
+    }
+
+    .nav {
+        transform: translateX(200%);
+        flex-direction: column;
+        /* justify-content: center; */
+        position: fixed;
+        /* background-color: #6889a0; */
+        width: 100%;
+        right: 0;
+        top: 40px;
+        z-index: 2;
+    }
+    .nav>* {
+        border-inline-end: none;
+    }
+    .nav>*:first-child {
+        border-inline-start: none;
+    }
+    .nav a {
+        color: white;
+        text-transform: uppercase;
+        font-weight: bold;
+        width: 100vw;
+        background-color:#74acf5;
+        margin: 3px;
+        /* border: 1px solid blue; */
+        padding: 0 200px;
+    }
+    body.menu-open .main-screen {
+        pointer-events: auto;
+        opacity: 1;
+        background-color: #9c9c9cd6;
+    }
+    body.menu-open .nav {
+        transform: translateX(0);
+    }
     .meme-area {
         display: grid;
         grid-template-columns: 1fr;
