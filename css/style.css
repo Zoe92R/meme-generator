@@ -264,11 +264,9 @@ footer {
         opacity: 0;
         transition: opacity .8s;
     }
-
     .btn-menu {
         display: block;
     }
-
     .nav {
         transform: translateX(200%);
         flex-direction: column;
@@ -291,7 +289,7 @@ footer {
         text-transform: uppercase;
         font-weight: bold;
         width: 100vw;
-        background-color:#74acf5;
+        background-color: #74acf5;
         margin: 3px;
         /* border: 1px solid blue; */
         padding: 0 200px;
@@ -301,6 +299,12 @@ footer {
         opacity: 1;
         background-color: #9c9c9cd6;
     }
+    body.modal.menu-open .main-screen {
+        pointer-events: auto;
+        opacity: 1;
+        background-color: #9c9c9cd6;
+    }
+
     body.menu-open .nav {
         transform: translateX(0);
     }
@@ -314,5 +318,9 @@ footer {
         /* height: 100vh;
         width: 100%; */
         background-color: #ffffff;
+    }
+    #my-canvas{
+        width: 300px;
+        height: 300px;
     }
 }
