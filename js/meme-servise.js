@@ -1,7 +1,107 @@
 'use strict';
+var gImgIdx = 1
+
 
 var gMeme;
 var gIsLines;
+var gImgs = [
+    {
+        id: gImgIdx++,
+        url() { return `img/${this.id}.jpg` },
+        keywords: ['happy', 'animal', 'puppy', 'dog', 'cute']
+    },
+    {
+        id: gImgIdx++,
+        url() { return `img/${this.id}.jpg` },
+        keywords: ['baby', 'fist', 'motivation', 'baby']
+    },
+    {
+        id: gImgIdx++,
+        url() { return `img/${this.id}.jpg` },
+        keywords: ['baby', 'dog', 'puppy', 'sleep', 'relax', 'cute']
+    },
+    {
+        id: gImgIdx++,
+        url() { return `img/${this.id}.jpg` },
+        keywords: ['cat', 'keyboard', 'leptop', 'sleep', 'relax', 'cute']
+    },
+    {
+        id: gImgIdx++,
+        url() { return `img/${this.id}.jpg` },
+        keywords: ['baby', 'laugh', 'funny', 'cute']
+    },
+    {
+        id: gImgIdx++,
+        url() { return `img/${this.id}.jpg` },
+        keywords: ['toy', 'story', 'funny', 'film', 'movie']
+    },
+    {
+        id: gImgIdx++,
+        url() { return `img/${this.id}.jpg` },
+        keywords: ['baby', 'cute', 'funny']
+    },
+    {
+        id: gImgIdx++,
+        url() { return `img/${this.id}.jpg` },
+        keywords: ['men', 'person', 'tell', 'more', 'hat']
+    },
+    {
+        id: gImgIdx++,
+        url() { return `img/${this.id}.jpg` },
+        keywords: ['men', 'big', 'long']
+    },
+    {
+        id: gImgIdx++,
+        url() { return `img/${this.id}.jpg` },
+        keywords: ['men', 'big', 'long']
+    },
+    {
+        id: gImgIdx++,
+        url() { return `img/${this.id}.jpg` },
+        keywords: ['men', 'politics', 'barak', 'obama', 'laugh']
+    },
+    {
+        id: gImgIdx++,
+        url() { return `img/${this.id}.jpg` },
+        keywords: ['men', 'man', 'kiss', 'funny']
+    },
+    {
+        id: gImgIdx++,
+        url() { return `img/${this.id}.jpg` },
+        keywords: ['men', 'person', 'haim', 'hecht', 'חיים', 'הכט']
+    },
+    {
+        id: gImgIdx++,
+        url() { return `img/${this.id}.jpg` },
+        keywords: ['men', 'person', 'movie', 'film', 'drink']
+    },
+    {
+        id: gImgIdx++,
+        url() { return `img/${this.id}.jpg` },
+        keywords: ['men', 'person', 'movie', 'film']
+    },
+    {
+        id: gImgIdx++,
+        url() { return `img/${this.id}.jpg` },
+        keywords: ['men', 'person', 'movie', 'film', 'laugh']
+    },
+    {
+        id: gImgIdx++,
+        url() { return `img/${this.id}.jpg` },
+        keywords: ['men', 'person', 'politics', 'vladimir', 'putin', 'president']
+    },
+    {
+        id: gImgIdx++,
+        url() { return `img/${this.id}.jpg` },
+        keywords: ['men', 'person', 'politics', 'donald', 'trump', 'president']
+    }
+];
+
+var gSearchedImgsIds;
+
+function getAllImgs() {
+    return gImgs;
+}
 
 function createGMeme() {
     gMeme = {
@@ -92,35 +192,46 @@ function moveRow(direction) {
     }
 }
 
-function deleteTxt(){
+function deleteTxt() {
     if (!gIsLines) return;
     gMeme.lines.splice(gMeme.selectedLineIdx, 1);
     console.log('after deleting there are _ lines:', gMeme.lines);
     if (gMeme.lines.length === 0) gIsLines = false;
 }
 
-function colorTxt(color){
+function colorTxt(color) {
     if (!gIsLines) return;
     gMeme.lines[gMeme.selectedLineIdx].color = color;
 }
 
-function strokeTxt(stroke){
+function strokeTxt(stroke) {
     if (!gIsLines) return;
     gMeme.lines[gMeme.selectedLineIdx].stroke = stroke;
 }
 
-function alignTxt(align){
+function alignTxt(align) {
     if (!gIsLines) return;
-    if (align==='left'){
+    if (align === 'left') {
         gMeme.lines[gMeme.selectedLineIdx].pos.x = 0;
         gMeme.lines[gMeme.selectedLineIdx].align = 'left';
-    } else if (align==='right'){
+    } else if (align === 'right') {
         gMeme.lines[gMeme.selectedLineIdx].pos.x = gCanvas.width;
-        gMeme.lines[gMeme.selectedLineIdx].align = 'right'; 
+        gMeme.lines[gMeme.selectedLineIdx].align = 'right';
     } else {
         gMeme.lines[gMeme.selectedLineIdx].pos.x = gCanvas.width / 2;
         gMeme.lines[gMeme.selectedLineIdx].align = 'center';
     }
+}
+
+function searchImg(searchWord) {
+    if (searchWord.length < 3) return;
+    var imgsSearched = gImgs.filter(function (img) {
+        var k = (img.keywords).filter(function (keyword) {
+            return (keyword.includes(searchWord));
+        });
+        return (k.length > 0);
+    });
+    return imgsSearched;
 }
 
 

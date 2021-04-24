@@ -3,15 +3,33 @@
 let gCanvas;
 let gCtx;
 
-
 function init() {
+    renderGallry();
     gCanvas = document.querySelector('#my-canvas');
     gCtx = gCanvas.getContext('2d');
     createGMeme();
     renderCanvas();
 }
 
-function renderCanvas() {
+function renderGallry(imgs = []) {
+    if (imgs.length === 0) imgs = getAllImgs();
+    var strHtmls = imgs.map(function (img) {
+        return `<img class="thumbnail-img" src=${img.url()} onclick="onUpdateImgMm(${img.id})">`
+    });
+    document.querySelector('.gallery-grid').innerHTML = strHtmls.join('');
+}
+
+function onSearchImg(searchWord){
+    var imgsSearched = searchImg(searchWord);
+    renderGallry(imgsSearched);
+}
+
+
+function getWord(elWord){
+    console.log(elWord);
+}
+
+function renderCanvas(isDownload = false) {
     const elImg = new Image()
     var imgNum = gMeme.selectedImgId;
     elImg.src = `img/${imgNum}.jpg`;
@@ -19,7 +37,12 @@ function renderCanvas() {
         gCtx.drawImage(elImg, 0, 0, gCanvas.width, gCanvas.height);
         if (gIsLines) {
             var rowNum = gMeme.selectedLineIdx;
-            drawRect(gMeme.lines[rowNum].pos.y);
+            if (!isDownload) {
+                drawRect(gMeme.lines[rowNum].pos.y);
+                console.log('inside renderCanvas= false, not download');
+            } else {
+                console.log('inside renderCanvas= true, download');
+            }
             gMeme.lines.forEach((line, index) => {
                 drawText(index, line.txt, line.pos.x, line.pos.y);
             });
@@ -33,8 +56,7 @@ function drawText(rowNum, txt, x, y) {
     gCtx.fillStyle = gMeme.lines[rowNum].color;
     gCtx.strokeStyle = gMeme.lines[rowNum].stroke;
     gCtx.lineWidth = 4;
-    gCtx.textBaseline = 'top'; /// to add textBaseline to gMeme
-    // gCtx.textBaseline = gMeme.lines[rowNum].textBaseline;
+    gCtx.textBaseline = 'top'; 
     gCtx.strokeText(txt, x, y);
     gCtx.fillText(txt, x, y);
 }
@@ -55,7 +77,6 @@ function onUpdateTxt() {
     var elTxt = document.querySelector('input[name=txt]');
     var txt = elTxt.value;
     updateTxt(txt);
-    // gMeme.lines[gMeme.selectedLineIdx].txt = txt;
     renderCanvas();
 }
 
@@ -66,9 +87,9 @@ function drawRect(y) {
     gCtx.fill();
 }
 
-function onUpdateImgMm(elImg) {
+function onUpdateImgMm(ImgId) {
     createGMeme();
-    gMeme.selectedImgId = elImg.dataset.id;
+    gMeme.selectedImgId = ImgId;
     onOpenMmModal();
     renderCanvas();
 }
@@ -112,7 +133,6 @@ function onStrokeTxt(stroke) {
 function onOpenMmModal() {
     var elModal = document.querySelector('.modal');
     elModal.hidden = false;
-    // document.body.classList.add("modal-mode");
     window.scrollTo(0, 0);
     var elGallery = document.querySelector('.gallery-container');
     elGallery.style.display = "none";
@@ -120,7 +140,6 @@ function onOpenMmModal() {
 
 function onCloseMeme() {
     var elModal = document.querySelector('.modal');
-    // document.body.classList.remove("modal-mode");
     elModal.hidden = true;
     var elGallery = document.querySelector('.gallery-container');
     elGallery.style.display = "block";
@@ -144,60 +163,33 @@ function renderInputBox() {
     }
 }
 
-function downloadImg(elLink) {
+function onDownloadImg() {
+    downloadImg()
+}
+
+function downloadImg() {
+    var elLink = document.querySelector('.download');
+    console.log()
     const data = gCanvas.toDataURL();
     elLink.href = data;
     elLink.download = 'my-meme';
 }
 
-
-function resizeCanvas() {
-    var elContainer = document.querySelector('.canvas-container');
-    gCanvas.width = elContainer.offsetWidth
-    gCanvas.height = elContainer.offsetHeight
+function onImgInput(ev) {
+    loadImageFromInput(ev, renderCanvas)
 }
+function loadImageFromInput(ev, onImageReady) {
+    document.querySelector('.share-container').innerHTML = ''
+    var reader = new FileReader();
 
-// function myFunction(x) {
-//     if (x.matches) { // If media query matches
-//         // document.body.style.backgroundColor = "yellow";
-//         window.addEventListener('resize', function () {
-//             gCanvas.width = 300;
-//             gCanvas.height = 300;
-//             // gCanvas.width = window.innerWidth;
-//             // gCanvas.height = window.innerWidth;
-//             // resizeCanvas();
-//             renderCanvas();
-//         })
-
-//     } else {
-//         // document.body.style.backgroundColor = "pink";
-//         gCanvas.width = 500;
-//         gCanvas.height = 500;
-//     }
-// }
-
-// var x = window.matchMedia("(max-width: 700px)")
-// console.log('lisener has added')
-// myFunction(x) // Call listener function at run time
-// x.addListener(myFunction)
-
-// function displayWindowSize() {
-//     // Get width and height of the window excluding scrollbars
-//     var w = document.documentElement.clientWidth;
-//     var h = document.documentElement.clientHeight;
-//     // Display result inside a div element
-//     if (w < 700) {
-//         console.log('mobile');
-//         gCanvas.width = 300;
-//         gCanvas.height = 300;
-//     } else {
-//         gCanvas.width = 500;
-//         gCanvas.height = 500;
-//     }
-// }
-
-// // Attaching the event listener function to window's resize event
-// window.addEventListener("resize", displayWindowSize);
-// // Calling the function for the first time
-// displayWindowSize();
+    reader.onload = function (event) {
+        var img = new Image();
+        img.onload = function () {
+            onImageReady(img)
+        }
+        console.log('event.target.result', event.target.result);
+        img.src = event.target.result;
+    }
+    reader.readAsDataURL(ev.target.files[0]);
+}
 

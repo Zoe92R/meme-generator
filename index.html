@@ -10,49 +10,29 @@
 </head>
 
 <body onload="init()">
-    <div class="main-screen" onclick="toggleMenu()"></div>    
+    <div class="main-screen" onclick="toggleMenu()"></div>
     <header>
         <div class="header-container container flex align-center">
             <div class="logo">MEME-GEN</div>
             <ul class="nav flex clean-list">
-                <li><a class="flex justify-center align-center" href="#">Gallery</a></li>
-                <li><a class="flex justify-center align-center" href="#">Memes</a></li>
+                <li><a class="flex justify-center align-center" href="#" onclick="onCloseMeme()">Gallery</a></li>
                 <li><a class="flex justify-center align-center" href="#">About</a></li>
             </ul>
             <button class="btn-menu" onclick="toggleMenu()">☰</button>
         </div>
     </header>
-    <!-- <div class="gallery-container container flex grid align-center  justify-center"> -->
+    <input type="text" id="search-txt" name="search-txt" oninput="onSearchImg(this.value)" placeholder="search">
     <div class="gallery-container container">
-        <!-- to render it later  -->
         <div class="gallery-grid">
-            <img data-id=1 class="thumbnail-img" src="img/1.jpg" onclick="onUpdateImgMm(this)">
-            <img data-id=2 class="thumbnail-img" src="img/2.jpg" onclick="onUpdateImgMm(this)">
-            <img data-id=3 class="thumbnail-img" src="img/3.jpg" onclick="onUpdateImgMm(this)">
-            <img data-id=4 class="thumbnail-img" src="img/4.jpg" onclick="onUpdateImgMm(this)">
-            <img data-id=5 class="thumbnail-img" src="img/5.jpg" onclick="onUpdateImgMm(this)">
-            <img data-id=6 class="thumbnail-img" src="img/6.jpg" onclick="onUpdateImgMm(this)">
-            <img data-id=7 class="thumbnail-img" src="img/7.jpg" onclick="onUpdateImgMm(this)">
-            <img data-id=8 class="thumbnail-img" src="img/8.jpg" onclick="onUpdateImgMm(this)">
-            <img data-id=9 class="thumbnail-img" src="img/9.jpg" onclick="onUpdateImgMm(this)">
-            <img data-id=10 class="thumbnail-img" src="img/10.jpg" onclick="onUpdateImgMm(this)">
-            <img data-id=11 class="thumbnail-img" src="img/11.jpg" onclick="onUpdateImgMm(this)">
-            <img data-id=12 class="thumbnail-img" src="img/12.jpg" onclick="onUpdateImgMm(this)">
-            <img data-id=13 class="thumbnail-img" src="img/13.jpg" onclick="onUpdateImgMm(this)">
-            <img data-id=14 class="thumbnail-img" src="img/14.jpg" onclick="onUpdateImgMm(this)">
-            <img data-id=15 class="thumbnail-img" src="img/15.jpg" onclick="onUpdateImgMm(this)">
-            <img data-id=16 class="thumbnail-img" src="img/16.jpg" onclick="onUpdateImgMm(this)">
-            <img data-id=17 class="thumbnail-img" src="img/17.jpg" onclick="onUpdateImgMm(this)">
-            <img data-id=18 class="thumbnail-img" src="img/18.jpg" onclick="onUpdateImgMm(this)">
         </div>
     </div>
     <div class="modal" hidden>
-        <btn class="close-meme btn-icon" onclick="onCloseMeme()">close</btn>
+        <btn class="close-meme btn-icon" onclick="onCloseMeme()">x</btn>
         <div class="meme-area container">
             <div class="canvas-container">
                 <!-- <canvas id="my-canvas" width="500" height="500" onclick="draw(event)"> -->
                 <canvas id="my-canvas" width="500" height="500">
-                <!-- <canvas id="my-canvas"> -->
+                    <!-- <canvas id="my-canvas"> -->
                     Update your browser to enjoy canvas!
                 </canvas>
             </div>
@@ -76,20 +56,25 @@
                 <img class="btn-icon left-i" src="icons/align-to-left.png" onclick="onAlignTxt('left')" />
                 <img class="btn-icon center-i" src="icons/center-text-alignment.png" onclick="onAlignTxt('center')" />
                 <img class="btn-icon right-i" src="icons/align-to-right.png" onclick="onAlignTxt('right')" />
-                <!-- <img class="btn-icon" src="icons/paint-board-and-brush.png"> -->
                 <input class="btn-icon color-i" type="color" id="color" name="color" value="#FFFFFF"
                     oninput="onColorTxt(this.value)" />
                 <input class="btn-icon color-i" type="color" id="stroke" name="stroke" value="black"
                     oninput="onStrokeTxt(this.value)" />
-                <div class="inputs">
-                    <a href="#" class="btn-icon" onclick="downloadImg(this)" download="my-img.jpg">Download</a>
-                </div>
+                <!-- <div class="inputs"> -->
+                    <a href="#" class="btn-f download" onclick="onDownloadImg()" download="my-img.jpg">Download</a>
+                <!-- </div> -->
+                <form action="" method="POST" enctype="multipart/form-data" onsubmit="uploadImg(this, event)">
+                    <input name="img" id="imgData" type="hidden" />
+                    <button class="btn-f publish-i" type="submit">Publish</button>
+                    <div class="share-container"></div>
+                </form>
             </div>
         </div>
     </div>
     <footer class="flex">
         <div class="flex container flex align-center">Made by Zoya Rumin</div>
     </footer>
+    <script src="js/upload-servise.js"></script>
     <script src="js/meme-servise.js"></script>
     <script src="js/controller.js"></script>
 </body>
